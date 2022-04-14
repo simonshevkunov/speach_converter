@@ -1,20 +1,18 @@
 import telebot
 
-API_TOKEN = '5180015716:AAHEXPed8DWwCRabaLpbdJRqXCKepPYrxhI'
+API_TOKEN = '5366935243:AAF-kbdlkr-8bl08eazYFlWTh-SDjCwdXe8'
 
 bot = telebot.TeleBot(API_TOKEN)
-
-
-# TODO add voice
 @bot.message_handler(commands=['help', 'start'])
 def send_welcome(message):
-    bot.reply_to(message, """Hi""")
+    bot.reply_to(message, """\
+Hi there, I am Speech Converter.
+I'm here to convert your speech into text. Just record an audio for me!\
+""")
 
-
-# Handle all other messages with content_type 'text' (content_types defaults to ['text'])
-@bot.message_handler(func=lambda message: True)
-def echo_message(message):
-    bot.reply_to(message, message.text)
-
-
-bot.infinity_polling()
+@bot.message_handler(content_types=['voice'])
+def voice_processing(message):
+    file_info = bot.get_file(message.voice.file_id)
+    downloaded_file = bot.download_file(file_info.file_path)
+    with open('new_file.ogg', 'wb') as new_file:
+        new_file.write(downloaded_file)
