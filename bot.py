@@ -18,5 +18,3 @@ def voice_processing(message):
         new_file.write(downloaded_file)
 
 bot.infinity_polling()
-
-
