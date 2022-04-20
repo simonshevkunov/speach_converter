@@ -16,3 +16,7 @@ def voice_processing(message):
     downloaded_file = bot.download_file(file_info.file_path)
     with open('new_file.ogg', 'wb') as new_file:
         new_file.write(downloaded_file)
+
+bot.infinity_polling()
+
+
