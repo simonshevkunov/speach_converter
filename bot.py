@@ -2,7 +2,7 @@ import telebot
 import requests
 import json
 
-IAM_TOKEN = 't1.9euelZqLkpzHjs6Xy5OVmZuNy8vMjO3rnpWaz5jLl5COjcfOkZOSlZePj8jl8_d6D1ps-e96c3d7_t3z9zo-V2z573pzd3v-.JHMNrWcrzwXRI1OiaillN28x2F_JZyBmWvB9isyCePVmUy80MkYq19E6FTsuEyFy2yP21m7kn3JEwwqtTuyJDQ'
+
 FOLDER_ID = 'b1gf0pjdr98nkrslcnba'
 
 
@@ -23,6 +23,9 @@ def voice_processing(message):
     downloaded_file = bot.download_file(file_info.file_path)
     with open('new_file.ogg', 'wb') as new_file:
         new_file.write(downloaded_file)
+
+    with open("iam.txt", "r") as f:
+        IAM_TOKEN = f.read()
 
     headers = {
         "Authorization": f"Bearer {IAM_TOKEN}"
